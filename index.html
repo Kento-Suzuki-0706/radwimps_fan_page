@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert & Weather Info</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+    
+
+<body>
+
+    <h1 class = "title" style="font-weight: bold;">RADWIMPS FAN PAGE</h1>
+
+    <div class="video-header">
+        <video autoplay muted loop playsinline>
+            <source src="/images/header_video.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+
+    <h1 style="margin-top: 10px;"> 🎫Concert🎤 & 🌤️Weather🌧️</h1>
+
+<div class="concert-section">
+    <div id="concertInfo"></div>
+
+    <div class="concert-images">
+        <img src="/images/image1.jpeg" alt="Concert Image 1" class="concert-img tilted-img">
+        <img src="/images/image2.jpeg" alt="Concert Image 2" class="concert-img tilted-img">
+    </div>
+</div>
+<div class="clear"></div>
+
+
+    <h1>🎧Music Recommendations🎧</h1>
+    <div class="music-container">
+        <div id="musicRecommendations"></div>
+        
+        <div class="album-section">
+            <img src="/images/album1.jpeg" alt="Album Image 1" class="album-img">
+            <img src="/images/album2.jpeg" class="reverse-tilted" alt="Album Image 2" class="album-img">
+            <img src="/images/album3.jpeg" alt="Album Image 3" class="album-img">
+            <img src="/images/album4.jpeg" class="reverse-tilted" alt="Album Image 4" class="album-img">
+            <img src="/images/album5.jpeg" alt="Album Image 5" class="album-img">
+            <img src="/images/album6.jpeg" class="reverse-tilted" alt="Album Image 6" class="album-img">
+        </div>
+    </div>
+    
+
+    <script style="background-color: black;">
+    async function fetchData() {
+        try {
+            const response = await fetch('/data');
+            const data = await response.text();
+            const lines = data.split('\n');
+            
+            let concertOutput = "";
+            let musicOutput = "";
+
+            let mode = 'concert';
+            for (let i = 0; i < lines.length; i++) { 
+                const line = lines[i];
+
+                if (line.includes("Music Recommendations:")) {
+                    mode = 'music'; 
+                    continue;
+                }
+
+                if (line.includes("------")) {
+                    continue; 
+                }
+
+                if (mode === 'concert') {
+                    if (line.includes("Weather:")) {
+                        concertOutput += `<p>${line}</p>`;
+                        const iconLine = lines[i+1]; 
+                        if (iconLine.startsWith("Icon: ")) {
+                            const iconURL = iconLine.split("Icon: ")[1];
+                            concertOutput += `<img src="${iconURL}" alt="Weather Icon">`;
+                            i++; 
+                        }
+                    } else {
+                        concertOutput += `<p>${line}</p>`;
+                    }
+                } else {
+                   
+                    if (line.includes("Track Name:")) {
+                        musicOutput += `<p>${line}</p>`;
+                    } else if (line.includes("Spotify Link:")) {
+                        const spotifyLink = line.split("Spotify Link: ")[1];
+                        const spotifyEmbedLink = spotifyLink.replace('https://open.spotify.com/track/', 'https://open.spotify.com/embed/track/');
+                        musicOutput += `<iframe class="spotify-embed" src="${spotifyEmbedLink}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
+                    } else if (line.includes("YouTube Link:")) {
+                        const youtubeLink = line.split("YouTube Link: ")[1];
+                        const videoId = youtubeLink.split("v=")[1];
+                        musicOutput += `<div class="youtube-embed"><iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+                    }
+
+                }
+            }
+
+
+
+            
+            document.getElementById('concertInfo').innerHTML = concertOutput;
+            document.getElementById('musicRecommendations').innerHTML = musicOutput;
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    window.onload = fetchData;
+</script>
+
+<div id="page-visits" style="position: fixed; right: 10px; bottom: 10px; background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 5px 10px; border-radius: 5px;">
+    <!-- PAGE_VISITS_PLACEHOLDER -->
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

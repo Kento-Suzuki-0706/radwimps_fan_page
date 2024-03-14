@@ -1,0 +1,355 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    overflow-x: hidden!important;
+}
+
+
+.video-header {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 900px; 
+}
+
+.video-header video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    background-color: #6633CC;
+    color: #fff;
+    font-weight: bolder;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border-bottom: 4px solid #555;
+}
+
+p {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+div#concertInfo, div#musicRecommendations {
+    background-color: black;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.youtube-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    max-width: 960px; 
+    margin: 0 auto;   
+}
+
+.youtube-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+
+
+#headerImage {
+    width: 100%;  
+    display: block;  
+    margin-bottom: 20px; 
+}
+
+.title{
+    background-color: black;
+    color: white;
+    padding: 30px;
+    border-radius: 5px;
+    text-align: left;
+    border-bottom: 8px solid aqua;
+}
+
+.concert-img {
+    width: 350px;  
+    height: auto;  
+    max-width: 100%; 
+}
+
+.concert-section {
+    display: flex;
+    justify-content: space-between; 
+    align-items: start; 
+    padding-right: 0px;
+}
+
+.concert-images {
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: flex-start; 
+    position: relative; 
+    z-index: 0;
+    right: 20px;
+    top: 35px;
+}
+
+.tilted-img {
+    transform: rotate(10deg);
+    margin-right: 10%;
+    transition: 0.3s; 
+}
+
+.concert-images img:nth-child(1) {
+    padding-left: 50px;
+}
+
+.concert-images img:nth-child(1):hover {
+    transform: rotate(0deg);
+}
+
+.tilted-img:hover {
+    transform: rotate(0deg);
+}
+
+.concert-images img:nth-child(2) {
+    position: relative;
+    top: 50px;
+    transform: rotate(-10deg);
+    margin-top: 20px;
+    padding-left: 50px;
+}
+
+.concert-images img:nth-child(2):hover {
+    transform: rotate(0deg);
+}
+
+.clear {
+    clear: both;
+}
+
+.album-section {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-end;  
+    position: relative; 
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.album-img {
+    width: 200px;  
+    height: auto;
+    margin-top: 120px;
+    margin-bottom: 150px; 
+    transform: rotate(10deg);
+    transition: 0.3s; 
+    margin-right: 70px;
+}
+
+.album-img:hover {
+    transform: rotate(-10deg);
+}
+
+.music-container {
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: space-between; 
+    padding-right: 30px;
+}
+
+.reverse-tilted {
+    transform: rotate(-10deg);
+    width: 200px;  
+    height: auto;
+    margin-right: 90px;
+}
+
+.reverse-tilted:hover {
+    transform: rotate(10deg);
+}
+
+
+/* for mobile phones */
+@media only screen and (max-width: 768px) {
+
+    body {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        overflow-x: hidden!important;
+    }
+
+    .concert-images img:nth-child(1) {
+        display: none;
+   }
+
+    .concert-images img:nth-child(2) {
+        display: none;
+   }
+
+    .video-header {
+        height: 400px; 
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .concert-section {
+        flex-direction: column; 
+        align-items: center; 
+        padding-right: 0;
+    }
+
+    .concert-images {
+        flex-direction: column; 
+        margin-top: 30px;  
+        right: 0;
+        top: 0;
+    }
+
+    .concert-img {
+        width: 90%;
+        margin-top: 10px; 
+    }
+
+    .music-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-section {
+        align-items: center; 
+        margin-left: 0;
+    }
+
+    .youtube-embed {
+        position: relative;
+        padding-bottom: 56.25%;  
+        height: 0;
+        overflow: hidden;
+        width: 100%;
+        max-width: none; 
+        margin: 0 auto;    
+    }
+    
+    .youtube-embed iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    
+    .spotify-embed{
+        max-height: 100px;
+    }
+    
+}
+
+
+
+/* for mobile tablets */
+@media only screen and (max-width: 1024px) {
+    .concert-images img:nth-child(1) {
+        display: none;
+   }
+
+    .concert-images img:nth-child(2) {
+        display: none;
+   }
+
+    .video-header {
+        height: 400px; 
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .concert-section {
+        flex-direction: column; 
+        align-items: center; 
+        padding-right: 0;
+    }
+
+    .concert-images {
+        flex-direction: column; 
+        margin-top: 30px;  
+        right: 0;
+        top: 0;
+    }
+
+    .concert-img {
+        width: 90%;
+        margin-top: 10px; 
+    }
+
+    .music-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .album-section {
+        align-items: center; 
+        margin-left: 0;
+    }
+
+    .youtube-embed {
+        position: relative;
+        padding-bottom: 56.25%; 
+        height: 0;
+        overflow: hidden;
+        width: 100%;
+        max-width: none;  
+        margin: 0 auto;    
+    }
+
+    
+    .youtube-embed iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+
+    div#concertInfo, div#musicRecommendations {
+        width: 70%;
+    }
+}
